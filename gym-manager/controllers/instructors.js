@@ -3,7 +3,7 @@ const data = require("../data.json")
 const { age, date } = require('../utils')
 
 exports.index = function (request, response) {
-    return response.render('instructors/index', { instructors: date.instructors })
+    return response.render('instructors/index', { instructors: data.instructors })
 }
 
 exports.show = function (request, response) {
@@ -66,13 +66,13 @@ exports.edit = function (request, response) {
         return instructor.id == id
     })
 
+    if (!foundInstructor) return response.send("Instructor not found!")
+
     const instructor = {
         ...foundInstructor,
         birth: date(foundInstructor.birth).iso,
-        id: Number(request.body.id)
     }
 
-    if (!foundInstructor) return response.send("Instructor not found!")
     return response.render('instructors/edit', { instructor })
 }
 

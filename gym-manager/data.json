@@ -1,26 +1,37 @@
 {
-  "members": [
-    {
-      "id": 1,
-      "avatar_url": "https://avatars3.githubusercontent.com/u/18420762?s=460&u=5fa3d3209f953669f08287c2cd5d5c6f0e597a61&v=4",
-      "name": "Thiego",
-      "email": "thi-ego@hotmail.com",
-      "birth": 867715200000,
-      "gender": "M",
-      "blood": "B0",
-      "weight": "85",
-      "height": "182"
-    }
-  ],
-  "instructors": [
-    {
-      "id": 1,
-      "avatar_url": "https://avatars3.githubusercontent.com/u/18420762?s=460&u=5fa3d3209f953669f08287c2cd5d5c6f0e597a61&v=4",
-      "name": "Thiego Moura",
-      "birth": 867715200000,
-      "gender": "M",
-      "services": "Bodybuilding, Run",
-      "created_at": 1603591766341
-    }
-  ]
+    "members": [
+        {
+            "id": "1",
+            "avatar_url": "https://avatars3.githubusercontent.com/u/18420762?s=460&u=5fa3d3209f953669f08287c2cd5d5c6f0e597a61&v=4",
+            "name": "Thiego Moura",
+            "email": "thi-ego@hotmail.com",
+            "birth": 867715200000,
+            "gender": "M",
+            "blood": "A1",
+            "weight": "85",
+            "height": "182"
+        },
+        {
+            "id": "11",
+            "avatar_url": "https://avatars0.githubusercontent.com/u/60511927?s=460&u=dbab76ac12fab580382420fbcc0f96120d9413e0&v=4",
+            "name": "Debora Zandonai",
+            "email": "deboh@example.com",
+            "birth": 1070582400000,
+            "gender": "F",
+            "blood": "A0",
+            "weight": "54",
+            "height": "159"
+        }
+    ],
+    "instructors": [
+        {
+            "id": "1",
+            "avatar_url": "https://avatars3.githubusercontent.com/u/18420762?s=460&u=5fa3d3209f953669f08287c2cd5d5c6f0e597a61&v=4",
+            "name": "Thiego Moura",
+            "birth": 867715200000,
+            "gender": "M",
+            "services": "Bodybuilding, Run, Crossfit, Workout",
+            "created_at": 1603591766341
+        }
+    ]
 }
