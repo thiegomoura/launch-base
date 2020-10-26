@@ -15,14 +15,14 @@ b{% block content %}
                 <input type="hidden" name="id" value="{{member.id}}">
                 <button type="submit">Deletar</button>
             </form>
-            <script>
+            {# <script>
                 const formDelete = document.querySelector("#form-delete")
                 formDelete.addEventListener("submit", function(event){
                     const confirmatition = confirm("Confirm delete?")
                     if(!confirmatition)
                         event.preventDefautl()
                 })
-            </script>
+            </script> #}
         </section>
     </div>
 {% endblock content %}

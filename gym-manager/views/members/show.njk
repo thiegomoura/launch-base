@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 
 b{% block content %}
-    <form class="card" method="GET" action="/members">
+    <form class="card" method="POST" action="/members">
         <section class="avatar" style="background: url({{member.avatar_url}}) no-repeat center center / cover"></section>
         <section class="details">
             <h3>Details</h3>
@@ -36,7 +36,7 @@ b{% block content %}
                 <div>{{member.created_at}}</div>
             </div>
 
-            <a href="/member/{{member.id}}/edit" class="button">Editar</a>
+            <a href="/members/{{member.id}}/edit" class="button">Editar</a>
         </section>
     </form>
 {% endblock content %}

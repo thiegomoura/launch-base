@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 
 b{% block content %}
-    <form class="card" method="GET" action="/instructors">
+    <form class="card" method="POST" action="/instructors">
         <section class="avatar" style="background: url({{instructor.avatar_url}}) no-repeat center center / cover"></section>
         <section class="details">
             <h3>Details</h3>
@@ -31,7 +31,7 @@ b{% block content %}
                 <div>{{instructor.created_at}}</div>
             </div>
 
-            <a href="/instructor/{{instructor.id}}/edit" class="button">Editar</a>
+            <a href="/instructors/{{instructor.id}}/edit" class="button">Editar</a>
         </section>
     </form>
 {% endblock content %}
