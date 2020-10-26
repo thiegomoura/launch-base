@@ -1,0 +1,42 @@
+{% extends "layout.njk" %}
+
+b{% block content %}
+    <form class="card" method="GET" action="/members">
+        <section class="avatar" style="background: url({{member.avatar_url}}) no-repeat center center / cover"></section>
+        <section class="details">
+            <h3>Details</h3>
+
+            <div class="item">
+                <div>Membro</div>
+                <div>{{member.name}}</div>
+            </div>
+            <div class="item">
+                <div>Aniversário</div>
+                <div>{{member.birth}}</div>
+            </div>
+            <div class="item">
+                <div>Gender</div>
+                <div>{{"Masculino" if member.gender == "M" else "Feminino"}}</div>
+            </div>
+            
+            <div class="item">
+                <div>Blood</div>
+                <div>{{member.blood}}</div>
+            </div>
+            <div class="item">
+                <div>Weight (kg)</div>
+                <div>{{member.weight}}</div>
+            </div>
+            <div class="item">
+                <div>Height (cm)</div>
+                <div>{{member.height}}</div>
+            </div>
+            <div class="item">
+                <div>Since</div>
+                <div>{{member.created_at}}</div>
+            </div>
+
+            <a href="/member/{{member.id}}/edit" class="button">Editar</a>
+        </section>
+    </form>
+{% endblock content %}
