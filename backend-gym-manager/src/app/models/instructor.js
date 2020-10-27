@@ -7,7 +7,7 @@ module.exports = {
             callback(results.rows)
         })
     },
-    create(data, calback) {
+    create(data, callback) {
         const query = `
         INSERT INTO instructors(
             name,

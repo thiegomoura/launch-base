@@ -8,7 +8,7 @@ for (item of menuItens) {
 
 const formDelete = document.querySelector("#form-delete")
 formDelete.addEventListener("submit", function (event) {
-    const confirmatition = confirm("Confirm delete?")
-    if (!confirmatition)
+    const confirmation = confirm("Confirm delete?")
+    if (!confirmation)
         event.preventDefault()
 })
