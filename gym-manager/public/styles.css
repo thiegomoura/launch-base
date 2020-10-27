@@ -2,6 +2,12 @@
 :root {
     --primary-color: #7159c1;
     --secondary-color: #E7DF1E;
+
+    --primary: #EE5622;
+    --secondary: #ECA72C;
+    --background-dark: #221E22;
+    --background-medium: #31263E;
+    --background-light: #44355B;
 }
 
 * {
@@ -11,12 +17,12 @@
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--background-dark);
     font-family: 'Roboto', sans-serif;
 }
 
 header {
-    background-color: white;
+    background-color: var(--secondary);
     width: 100%;
     padding: 32px;
     text-align: center;
@@ -33,24 +39,24 @@ header {
 
 .links a {
     text-decoration: none;
-    color: #777;
+    color: white;
     position: relative;
 }
 
 .links a.active {
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--primary);
 }
 
 .links a:hover {
-    color: var(--primary-color);
+    color: var(--primary);
 }
 
 .links a::after {
     content: "";
     width: 0%;
     height: 4px;
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     position: absolute;
     left: 0;
     bottom: -4px;
@@ -70,7 +76,7 @@ header {
     margin: 45px auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    box-shadow: 0px 4px 6px -2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 4px 6px -2px rgba(255, 255, 255, 0.4);
     animation: up 200ms ease-out;
 }
 
