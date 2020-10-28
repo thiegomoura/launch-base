@@ -7,7 +7,10 @@ module.exports = {
         })
     },
     create(request, response) {
-        return response.render('members/create')
+
+        Member.instructorsSelectOptions(function (options) {
+            return response.render('members/create', { instructorOptions: options })
+        })
     },
     post(request, response) {
         const keys = Object.keys(request.body)
@@ -35,7 +38,9 @@ module.exports = {
 
             member.birth = date(member.birth).iso
 
-            return response.render("members/edit", { member })
+            Member.instructorsSelectOptions(function (options) {
+                return response.render('members/edit', { member, instructorOptions: options })
+            })
         })
     },
     put(request, response) {
@@ -44,12 +49,12 @@ module.exports = {
             if (request.body[key] == "")
                 return response.send('Please, fill all fields!')
         }
-        Member.update(request.body, function(){
+        Member.update(request.body, function () {
             return response.redirect(`/members/${request.body.id}`)
         })
     },
     delete(request, response) {
-        Member.delete(request.body.id, function(){
+        Member.delete(request.body.id, function () {
             return response.redirect("/members")
         })
     },

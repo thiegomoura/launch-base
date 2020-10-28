@@ -2,9 +2,33 @@ const { age, date } = require('../../lib/utils')
 const Instructor = require('../models/instructor')
 module.exports = {
     index(request, response) {
-        Instructor.all(function (instructors) {
-            return response.render("instructors/index", { instructors })
-        })
+        let { filter, page, limit } = request.query
+
+        page = page || 1
+        limit = limit || 2
+        let offset = limit * (page - 1)
+
+        const params = {
+            filter,
+            page,
+            limit,
+            offset,
+            callback(instructors) {
+                return response.render("instructors/index", { instructors, filter })
+            }
+        }
+
+        Instructor.paginate(params)
+
+        // if (filter) {
+        //     Instructor.findBy(filter, function (instructors) {
+        //         return response.render("instructors/index", { instructors, filter })
+        //     })
+        // } else {
+        //     Instructor.all(function (instructors) {
+        //         return response.render("instructors/index", { instructors })
+        //     })
+        // }
     },
     create(request, response) {
         return response.render('instructors/create')
@@ -46,12 +70,12 @@ module.exports = {
             if (request.body[key] == "")
                 return response.send('Please, fill all fields!')
         }
-        Instructor.update(request.body, function(){
+        Instructor.update(request.body, function () {
             return response.redirect(`/instructors/${request.body.id}`)
         })
     },
     delete(request, response) {
-        Instructor.delete(request.body.id, function(){
+        Instructor.delete(request.body.id, function () {
             return response.redirect("/instructors")
         })
     },

@@ -2,12 +2,19 @@
 
 b{% block content %}
     <div class="card table-container">
-        <a href="/instructors/create">New</a>
+        <div class="header">
+            <a class="button" href="/instructors/create">New</a>
+            <form action="/instructors" method="GET">
+                <input type="text" name="filter" placeholder="filter by name or services" value="{{filter}}">
+                <button type="submit">Filtrar</button>
+                </form>
+        </div>
         <table width="100%">
             <thead>
                 <tr>
                     <th>Instructor</th>
                     <th>Services</th>
+                    <th>Students</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -19,6 +26,7 @@ b{% block content %}
                             {{instructor.name}}
                         </td>
                         <td>{{instructor.services}}</td>
+                        <td>{{instructor.total_students}}</td>
                         <td>
                             <a href="/instructors/{{instructor.id}}">Details</a>
                         </td>

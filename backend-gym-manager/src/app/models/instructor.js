@@ -2,7 +2,11 @@ const { age, date } = require('../../lib/utils')
 const db = require('../../config/db')
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM instructors ORDER BY name ASC`, function (err, results) {
+        db.query(`SELECT instructors.*, count(members) AS total_students
+        FROM instructors
+        LEFT JOIN members ON (instructors.id = members.instructor_id)
+        GROUP BY instructors.id
+        ORDER BY total_students DESC`, function (err, results) {
             if (err) throw `Database error! ${err}`
             callback(results.rows)
         })
@@ -41,6 +45,18 @@ module.exports = {
             callback(results.rows[0])
         })
     },
+    findBy(filter, callback) {
+        db.query(`SELECT instructors.*, count(members) AS total_students
+        FROM instructors
+        LEFT JOIN members ON (instructors.id = members.instructor_id)
+        WHERE instructors.name ILIKE '%${filter}%'
+        OR instructors.services ILIKE '%${filter}%'
+        GROUP BY instructors.id
+        ORDER BY total_students DESC`, function (err, results) {
+            if (err) throw `Database error! ${err}`
+            callback(results.rows)
+        })
+    },
     update(data, callback) {
         const query = `
         UPDATE instructors SET
@@ -70,6 +86,29 @@ module.exports = {
         db.query(`DELETE FROM instructors WHERE id = $1`, [id], function (err, results) {
             if (err) throw `Update error! ${err}`
             callback()
+        })
+    },
+    paginate(params){
+        const { filter, limit, offset, callback} = params
+
+        let query = `SELECT instructors.*, count(members) AS total_students
+        FROM instructors
+        LEFT JOIN members
+        ON (instructors.id = members.instructors_id)`
+
+        if(filter){
+            query = `${query}
+            WHERE instructors.name ILIKE '%${filter}%
+            OR instructors.services ILIKE '%${filter}%`
+        }
+
+        query = `${query}
+        GROUP BY instructors.id
+        LIMIT $1 OFFSET $2`
+
+        db.query(query, [limit, offset], function(err, results){
+            if (err) throw `Database error! ${err}`
+            callback(results.rows)
         })
     }
 }
