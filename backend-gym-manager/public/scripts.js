@@ -6,7 +6,7 @@ for (item of menuItens) {
     }
 }
 
-function paginate(selectPage, totalPages) {
+function paginate(selectedPage, totalPages) {
     let pages = [],
         oldPage
 
@@ -18,26 +18,29 @@ function paginate(selectPage, totalPages) {
             if (oldPage && currentPage - oldPage > 2)
                 pages.push("...")
             if (oldPage && currentPage - oldPage == 2)
-                pages.splice(oldPage + 1)
+                pages.push(oldPage + 1)
             pages.push(currentPage)
             oldPage = currentPage
         }
     }
     return pages;
 }
-
 function createPagination(pagination) {
+    const filter = pagination.dataset.filter
     const page = +pagination.dataset.page
     const total = +pagination.dataset.total
     const pages = paginate(page, total)
 
     let elements = '';
-    
+
     for (let page of pages) {
         if (String(page).includes('...'))
             elements += `<span>${page}</span>`
         else
-            elements += `<a href="?page=${page}">${page}</a>`
+            if (filter)
+                elements += `<a href="?page=${page}&filter=${filter}">${page}</a>`
+            else
+                elements += `<a href="?page=${page}">${page}</a>`
     }
     pagination.innerHTML = elements
 }
@@ -45,5 +48,5 @@ function createPagination(pagination) {
 const pagination = document.querySelector('.pagination');
 
 if (pagination) {
-    createPagination(pagination);
+    createPagination(pagination)
 }

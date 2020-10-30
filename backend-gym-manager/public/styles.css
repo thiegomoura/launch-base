@@ -309,12 +309,18 @@ tbody tr td:last-child a, .table-container>a {
 
 .pagination a,
 .pagination span {
-    color: var(--primary-color);
+    color: white;
     text-decoration: none;
-    margin-right: 8px;
+    margin-right: 16px;
+}
+
+.pagination a:last-child {
+    margin-right: 0;
 }
 
 .pagination a:hover{
     filter: brightness(0.4);
-    border-bottom: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border: none !important;
+    border-bottom: 1px solid var(--primary-color) !important;
 }
